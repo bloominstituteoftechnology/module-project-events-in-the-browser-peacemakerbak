@@ -116,9 +116,21 @@ function moduleProject2() {
 
 
     // 👉 TASK 5 - End the game 👈
+let liveMosquitoes = document.querySelectorAll('[data-status="alive"]')
+if (liveMosquitoes.length === 0) {
+  let elaspsed = getTimeElapsed()
+  document.querySelector('p.info').textContent = `You exterminated all the mosquitoes in ${elaspsed / 1000} seconds!`
+
+  let restartButton = document.createElement('button')
+  restartButton.textContent = 'Restart'
+  restartButton.addEventListener('click', () => {
+    window.location.reload()
   })
+  document.querySelector('h2').insertAdjacentElement('beforeend', restartButton)
+}
   // 👆 WORK WORK ABOVE THIS LINE 👆
 }
+},
 
 // ❗ DO NOT MODIFY THE CODE BELOW
 // ❗ DO NOT MODIFY THE CODE BELOW
