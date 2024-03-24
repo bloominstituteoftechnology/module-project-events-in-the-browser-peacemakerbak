@@ -75,6 +75,7 @@ function moduleProject2() {
     let isDown = evt.key === keys.down
     let isLeft = evt.key === keys.left
     let isRight = evt.key === keys.right
+    let isSpacebar = evt.key === keys.space
 
     let targeted = document.querySelector('.targeted') // Get the currently targeted square
 
@@ -104,6 +105,15 @@ function moduleProject2() {
 
 
     // 👉 TASK 4 - Use the space bar to exterminate a mosquito 👈
+    else if (isSpacebar) {
+      let mosquito = targeted.firstChild
+
+      if (mosquito && mosquito.dataset.status === 'alive') {
+        mosquito.dataset.status = 'dead'
+        mosquito.parentElement.style.backgroundColor = 'pink'
+        }
+    }
+
 
     // 👉 TASK 5 - End the game 👈
   })
