@@ -36,7 +36,7 @@ function moduleProject2() {
       square.classList.add('square')
       row.appendChild(square)
       square.addEventListener('click', () => {
-        
+
         // 👉 TASK 2 - Use a click handler to target a square 👈
         if (!square.classList.contains('targeted')) { // If square is not already targeted... 
           document.querySelector('.targeted').classList.remove('targeted') // remove targeting from current square...
@@ -70,6 +70,38 @@ function moduleProject2() {
 
   document.addEventListener('keydown', evt => {
     // 👉 TASK 3 - Use the arrow keys to highlight a new square 👈
+    
+    let isUP = evt.key === keys.up
+    let isDown = evt.key === keys.down
+    let isLeft = evt.key === keys.left
+    let isRight = evt.key === keys.right
+
+    let targeted = document.querySelector('.targeted') // Get the currently targeted square
+
+    if (isUP) {
+      if (targeted.parentElement.previousElementSibling) { // If there is a row above...
+        let i = Array.from(targeted.parentElement.children).indexOf(targeted) // Get the index of the targeted square in its row  
+        targeted.classList.remove('targeted') // Remove targeting from the current square...
+        targeted.parentElement.previousElementSibling.children[i].classList.add('targeted') // and target the square above.
+      }
+    } else if (isDown) {
+      if (targeted.parentElement.nextElementSibling) { // If there is a row below...
+        let i = Array.from(targeted.parentElement.children).indexOf(targeted) // Get the index of the targeted square in its row
+        targeted.classList.remove('targeted') // Remove targeting from the current square...
+        targeted.parentElement.nextElementSibling.children[i].classList.add('targeted') // and target the square below.
+      }
+    } else if (isLeft) {
+      if (targeted.previousElementSibling) { // If there is a square to the left...
+        targeted.classList.remove('targeted') // Remove targeting from the current square...
+        targeted.previousElementSibling.classList.add('targeted') // and target the square to the left.
+      }
+    } else if (isRight) {
+      if (targeted.nextElementSibling) { // If there is a square to the right...
+        targeted.classList.remove('targeted') // Remove targeting from the current square...
+        targeted.nextElementSibling.classList.add('targeted') // and target the square to the right.
+      }
+    }
+
 
     // 👉 TASK 4 - Use the space bar to exterminate a mosquito 👈
 
